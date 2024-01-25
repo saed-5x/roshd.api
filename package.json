@@ -2,9 +2,8 @@
   "version": "1.0.0",
   "name": "rosd.api",
   "main":"index.js",
-  "private": false,
+  "private": true,
   "scripts": {
-    "build":"npm install --production || npm prune --production",
     "start": "node index.js"
   },
     "dependencies": {
@@ -13,6 +12,6 @@
         "whatsapp-web.js": "github:MobCode100/whatsapp-web.js"
     },
     "engines": {
-      "node": ">=14"
+      "node": ">=18"
     }
 }
