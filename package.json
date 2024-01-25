@@ -4,6 +4,7 @@
   "main":"index.js",
   "private": true,
   "scripts": {
+    "build":"npm install --production || npm prune --production",
     "start": "node index.js"
   },
     "dependencies": {
