@@ -6,13 +6,8 @@
     "build":"npm install --production && npm prune --production"
   },
     "dependencies": {
-        "@types/node": "^18.0.6",
         "express": "^4.18.2",
-        "node-fetch": "^3.2.6",
         "puppeteer": "^21.7.0",
         "whatsapp-web.js": "github:MobCode100/whatsapp-web.js"
-    },
-  "devDependencies": {
-    "eslint": "^8.56.0"
-  }
+    }
 }
