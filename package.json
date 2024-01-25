@@ -1,7 +1,10 @@
 {
   "version": "1.0.0",
-  "name": "asp.net",
+  "name": "rosd.api",
   "private": true,
+  "scripts": {
+    "build":"npm install --production && npm prune --production"
+  },
     "dependencies": {
         "@types/node": "^18.0.6",
         "express": "^4.18.2",
