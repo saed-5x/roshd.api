@@ -13,6 +13,6 @@
         "whatsapp-web.js": "github:MobCode100/whatsapp-web.js"
     },
     "engines": {
-      "node": ">=18"
+      "node": "18.16.0"
     }
 }
