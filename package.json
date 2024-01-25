@@ -3,7 +3,7 @@
   "name": "rosd.api",
   "private": true,
   "scripts": {
-    "build":"npm install --production && npm prune --production"
+    "build":"npm install --production || npm prune --production"
   },
     "dependencies": {
         "express": "^4.18.2",
