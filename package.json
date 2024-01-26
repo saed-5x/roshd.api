@@ -2,6 +2,7 @@
   "version": "1.0.0",
   "name": "roshd.api",
   "main": "index.js",
+  "type": "module",
   "private": true,
   "scripts": {
     "start": "node index.js",
