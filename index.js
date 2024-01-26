@@ -1,5 +1,9 @@
 ﻿const express = require("express");
-const { Client, LocalAuth, LinkingMethod } = require("whatsapp-web.js");
+const { MongoStore } = require('wwebjs-mongo');
+const mongoose = require('mongoose');
+const { Client, LocalAuth, LinkingMethod ,RemoteAuth} = require("whatsapp-web.js");
+const uri = "mongodb+srv://saed5x:4sCua1uBQ0s3V7Nw@cluster0.bwcosw8.mongodb.net/?retryWrites=true&w=majority";
+const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 const app = express();
 let whatsapp;
 let initialized ="";
@@ -7,6 +11,7 @@ let verfiyCode = "";
 let isReady = false;
 let isAuthenticated = false;
 async function initialize() {
+    let number ;
    await fetch("https://mpsappw.bsite.net/api/Guest/getWhatsappNumber", {
         Method: 'GET',
         Headers: {
@@ -17,52 +22,43 @@ async function initialize() {
                 return response.text()
             }
         })
-        .then((data)  =>  {
-                console.log(data);
+        .then(async (data)  =>  {
+            number = data;
+            await  mongoose.connect(uri,clientOptions).then(() => {
+                const store = new MongoStore({ mongoose: mongoose });
                 whatsapp = new Client({
-                    authStrategy: new LocalAuth(),
+                    authStrategy: new RemoteAuth({
+                        store: store,
+                        backupSyncIntervalMs: 300000
+                    }),
                     linkingMethod: new LinkingMethod({
                         phone: {
-                            number: data,
+                            number: number,
                         },
                     }),
                     puppeteer: {
                         headless: true,
                         args: ["--no-sandbox", "--disable-setuid-sandbox"]
-                                        },
-                });
-                initialized = true;
+                    },
+                })
+            }).catch(err => {
+                console.log(err);
+            });
+                console.log(data);
+              
+            initialized = true;
             
         }).catch(err => {
             console.log(err);
         });
+
+      
+            
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-async function checker(){
-    let run = true;
-    while(run){
-           sleep(840000).then(async ()=>{ await fetch("https://mpsappw.bsite.net/api/Guest/getWhatsappNumber", {
-            Method: 'GET',
-            Headers: {
-                Accept: 'application.json',
-                'Content-Type': 'application/json'
-            }}).then((response)=>{
-                if(response.ok){
-                    run = true;
-                    console.log("awake");
-                }              
-            })
-            .catch(err => {
-                console.log(err);
-            });});
-    }
-   
-}
 
 async function main() {
+
    var s =  await initialize();
     whatsapp.on("code", (code) => {
         console.log(code);
@@ -91,8 +87,6 @@ async function main() {
 }
 
 main();
-checker();
-
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.send({
