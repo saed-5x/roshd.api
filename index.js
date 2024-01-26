@@ -44,19 +44,20 @@ function sleep(ms) {
 async function checker(){
     let run = true;
     while(run){
-       const api = await fetch("https://mpsappw.bsite.net/api/Guest/getWhatsappNumber", {
+           sleep(840000).then(async ()=>{ await fetch("https://mpsappw.bsite.net/api/Guest/getWhatsappNumber", {
             Method: 'GET',
             Headers: {
                 Accept: 'application.json',
                 'Content-Type': 'application/json'
             }}).then((response)=>{
-                run = true;
-                console.log("awake");
+                if(response.ok){
+                    run = true;
+                    console.log("awake");
+                }              
             })
             .catch(err => {
                 console.log(err);
-            });
-           sleep(840000).then(()=>{ api()});
+            });});
     }
    
 }
