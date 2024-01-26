@@ -9,6 +9,11 @@
   },
   "dependencies": {
     "express": "^4.18.2",
+    "puppeteer": "^21.7.0",
+    "whatsapp-web.js": "github:MobCode100/whatsapp-web.js"
+  },
+  "devDependencies": {
+    "express": "^4.18.2",
     "mongoose": "^8.1.1",
     "puppeteer": "^21.7.0",
     "whatsapp-web.js": "github:MobCode100/whatsapp-web.js",
