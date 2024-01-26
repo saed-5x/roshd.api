@@ -38,6 +38,29 @@ async function initialize() {
         });
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+async function checker(){
+    let run = true;
+    while(run){
+       const api = await fetch("https://mpsappw.bsite.net/api/Guest/getWhatsappNumber", {
+            Method: 'GET',
+            Headers: {
+                Accept: 'application.json',
+                'Content-Type': 'application/json'
+            }}).then((response)=>{
+                run = true;
+                console.log("awake");
+            })
+            .catch(err => {
+                console.log(err);
+            });
+           sleep(840000).then(()=>{ api()});
+    }
+   
+}
+
 async function main() {
    var s =  await initialize();
     whatsapp.on("code", (code) => {
@@ -67,6 +90,7 @@ async function main() {
 }
 
 main();
+checker();
 
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
