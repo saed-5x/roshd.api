@@ -1,16 +1,11 @@
-﻿const express = require("express");
+﻿import express from "express";
 //const { MongoStore } = require('wwebjs-mongo');
 //const mongoose = require('mongoose');
-const {
-  Client,
-  LocalAuth,
-  LinkingMethod,
-  RemoteAuth,
-} = require("whatsapp-web.js");
+import { Client, LocalAuth, LinkingMethod, RemoteAuth } from "whatsapp-web.js";
 //const uri = "mongodb+srv://saed5x:4sCua1uBQ0s3V7Nw@cluster0.bwcosw8.mongodb.net/?retryWrites=true&w=majority";
-const clientOptions = {
-  serverApi: { version: "1", strict: true, deprecationErrors: true },
-};
+// const clientOptions = {
+//   serverApi: { version: "1", strict: true, deprecationErrors: true },
+// };
 const app = express();
 let whatsapp;
 let initialized = "";
@@ -48,8 +43,8 @@ async function initialize() {
         puppeteer: {
           handleSIGINT: false,
           headless: true,
-          args: ["--no-sandbox", "--disable-setuid-sandbox"],
-          // executablePath:"D:\\Code_Work_Storage\\Moath_School_Intouch_NApp\\version_0.1\\.local-chromium\\win64-982053\\chrome-win\\chrome.exe"
+          args: ["--no-sandbox", "--disable-setuid-sandbox"]
+          //,executablePath:"D:\\Code_Work_Storage\\Moath_School_Intouch_NApp\\version_0.1\\.local-chromium\\win64-982053\\chrome-win\\chrome.exe"
         },
       });
       // await  mongoose.connect(uri,clientOptions).then(() => {
@@ -73,7 +68,6 @@ async function initialize() {
       //     console.log(err);
       // });
       console.log(data);
-
       initialized = true;
     })
     .catch((err) => {

@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "name": "rosd.api",
+  "name": "roshd.api",
   "main": "index.js",
-  "private": false,
+  "private": true,
   "scripts": {
     "start": "node index.js",
     "build": "npm install --production || npm prune --production"
