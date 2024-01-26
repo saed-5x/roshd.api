@@ -2,10 +2,11 @@
   "version": "1.0.0",
   "name": "rosd.api",
   "main":"index.js",
-  "private": true,
+  "private": false,
   "scripts": {
-    "build":"npm install --production || npm prune --production",
-    "start": "NODE_OPTIONS=--trace-deprecation node index.js"
+    "start": "node index.js",
+    "build":"npm install --production || npm prune --production"
+  
   },
     "dependencies": {
         "express": "^4.18.2",
