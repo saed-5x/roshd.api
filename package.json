@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "name": "roshd.api",
   "main": "index.js",
-  "type": "module",
+  "type":"commonjs",
   "private": true,
   "scripts": {
     "start": "node index.js",
@@ -12,13 +12,6 @@
     "express": "^4.18.2",
     "puppeteer": "^21.7.0",
     "whatsapp-web.js": "github:MobCode100/whatsapp-web.js"
-  },
-  "devDependencies": {
-    "express": "^4.18.2",
-    "mongoose": "^8.1.1",
-    "puppeteer": "^21.7.0",
-    "whatsapp-web.js": "github:MobCode100/whatsapp-web.js",
-    "wwebjs-mongo": "^1.1.0"
   },
   "engines": {
     "node": "18.16.0"
