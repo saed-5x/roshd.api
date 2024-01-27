@@ -1,10 +1,10 @@
-﻿const { MongoStore } = require("wwebjs-mongo");
-const mongoose = require("mongoose");
-const uri =
-  "mongodb+srv://saed5x:4sCua1uBQ0s3V7Nw@cluster0.bwcosw8.mongodb.net/?retryWrites=true&w=majority";
-const clientOptions = {
-  serverApi: { version: "1", strict: true, deprecationErrors: true },
-};
+// ﻿const { MongoStore } = require("wwebjs-mongo");
+// const mongoose = require("mongoose");
+// const uri =
+//   "mongodb+srv://saed5x:4sCua1uBQ0s3V7Nw@cluster0.bwcosw8.mongodb.net/?retryWrites=true&w=majority";
+// const clientOptions = {
+//   serverApi: { version: "1", strict: true, deprecationErrors: true },
+// };
 
 /**
  *
@@ -39,53 +39,53 @@ async function initialize() {
     })
     .then(async (data) => {
       number = data;
-      // const authStrategy = new LocalAuth({
-      //     clientId: "adminSession"
-      //   });
-      //        whatsapp = new Client({
-      //         authStrategy,
-      //         restartOnAuthFail: true,
-      //         takeoverOnConflict: true,
-      //         linkingMethod: new LinkingMethod({
-      //             phone: {
-      //                 number: number,
-      //             },
-      //         }),
-      //         puppeteer: {
-      //             handleSIGINT: false,
-      //             headless: true,
-      //             args: ["--no-sandbox", "--disable-setuid-sandbox"]
-      //             //,executablePath:"D:\\Code_Work_Storage\\Moath_School_Intouch_NApp\\version_0.1\\.local-chromium\\win64-982053\\chrome-win\\chrome.exe"
-      //         },
-      //     })
-      await mongoose
-        .connect(uri, clientOptions)
-        .then(() => {
-          const store = new MongoStore({ mongoose: mongoose });
-          whatsapp = new Client({
-            authStrategy: new RemoteAuth({
-              store: store,
-              backupSyncIntervalMs: 300000,
-            }),
-            restartOnAuthFail: true,
-            takeoverOnConflict: true,
-            linkingMethod: new LinkingMethod({
-              phone: {
-                number: number,
-              },
-            }),
-            puppeteer: {
-              handleSIGINT: false,
-              headless: true,
-              args: ["--no-sandbox", "--disable-setuid-sandbox"],
-              //,executablePath:"D:\\Code_Work_Storage\\Moath_School_Intouch_NApp\\version_0.1\\.local-chromium\\win64-982053\\chrome-win\\chrome.exe"
-            },
-          });
-          whatsapp.initialize();
-        })
-        .catch((err) => {
-          console.log(err);
+      const authStrategy = new LocalAuth({
+          clientId: "adminSession"
         });
+             whatsapp = new Client({
+              authStrategy,
+              restartOnAuthFail: true,
+              takeoverOnConflict: true,
+              linkingMethod: new LinkingMethod({
+                  phone: {
+                      number: number,
+                  },
+              }),
+              puppeteer: {
+                  handleSIGINT: false,
+                  headless: true,
+                  args: ["--no-sandbox", "--disable-setuid-sandbox"]
+                  //,executablePath:"D:\\Code_Work_Storage\\Moath_School_Intouch_NApp\\version_0.1\\.local-chromium\\win64-982053\\chrome-win\\chrome.exe"
+              },
+          })
+      // await mongoose
+      //   .connect(uri, clientOptions)
+      //   .then(() => {
+      //     const store = new MongoStore({ mongoose: mongoose });
+      //     whatsapp = new Client({
+      //       authStrategy: new RemoteAuth({
+      //         store: store,
+      //         backupSyncIntervalMs: 300000,
+      //       }),
+      //       restartOnAuthFail: true,
+      //       takeoverOnConflict: true,
+      //       linkingMethod: new LinkingMethod({
+      //         phone: {
+      //           number: number,
+      //         },
+      //       }),
+      //       puppeteer: {
+      //         handleSIGINT: false,
+      //         headless: true,
+      //         args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      //         //,executablePath:"D:\\Code_Work_Storage\\Moath_School_Intouch_NApp\\version_0.1\\.local-chromium\\win64-982053\\chrome-win\\chrome.exe"
+      //       },
+      //     });
+      //     whatsapp.initialize();
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
       console.log(data);
       initialized = true;
 
