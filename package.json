@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "build": "yarn install --production || yarn prune --production"
+    "build": "npm install --production || npm prune --production"
   },
   "dependencies": {
     "express": "^4.18.2",
