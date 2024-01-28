@@ -2,17 +2,17 @@
   "version": "1.0.0",
   "name": "roshd.api",
   "main": "index.js",
-  "type":"commonjs",
+  "type": "commonjs",
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "build": "npm install --production || npm prune --production"
+    "build": "yarn install --production || yarn prune --production"
   },
   "dependencies": {
     "express": "^4.18.2",
     "whatsapp-web.js": "github:MobCode100/whatsapp-web.js"
   },
   "engines": {
-    "node": ">=18"
+    "node": "18.16.0"
   }
 }

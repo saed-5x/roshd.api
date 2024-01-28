@@ -1,4 +1,4 @@
-// ﻿const { MongoStore } = require("wwebjs-mongo");
+﻿// const { MongoStore } = require("wwebjs-mongo");
 // const mongoose = require("mongoose");
 // const uri =
 //   "mongodb+srv://saed5x:4sCua1uBQ0s3V7Nw@cluster0.bwcosw8.mongodb.net/?retryWrites=true&w=majority";
@@ -42,22 +42,25 @@ async function initialize() {
       const authStrategy = new LocalAuth({
           clientId: "adminSession"
         });
-             whatsapp = new Client({
-              authStrategy,
-              restartOnAuthFail: true,
-              takeoverOnConflict: true,
-              linkingMethod: new LinkingMethod({
-                  phone: {
-                      number: number,
-                  },
-              }),
-              puppeteer: {
-                  handleSIGINT: false,
-                  headless: true,
-                  args: ["--no-sandbox", "--disable-setuid-sandbox"]
-                  //,executablePath:"D:\\Code_Work_Storage\\Moath_School_Intouch_NApp\\version_0.1\\.local-chromium\\win64-982053\\chrome-win\\chrome.exe"
-              },
-          })
+
+      whatsapp = new Client({
+      authStrategy,
+      restartOnAuthFail: true,
+      takeoverOnConflict: true,
+      linkingMethod: new LinkingMethod({
+          phone: {
+              number: number,
+          },
+      }),
+      puppeteer: {
+          handleSIGINT: false,
+          headless: true,
+          args: ["--no-sandbox", "--disable-setuid-sandbox"]
+          //,executablePath:"D:\\Code_Work_Storage\\Moath_School_Intouch_NApp\\version_0.1\\.local-chromium\\win64-982053\\chrome-win\\chrome.exe"
+      },
+  });
+  whatsapp.initialize();
+
       // await mongoose
       //   .connect(uri, clientOptions)
       //   .then(() => {
@@ -86,6 +89,7 @@ async function initialize() {
       //   .catch((err) => {
       //     console.log(err);
       //   });
+      
       console.log(data);
       initialized = true;
 
@@ -114,11 +118,6 @@ async function main() {
     console.log("is ready");
     isReady = true;
   });
-
-  whatsapp.on("remote_session_saved", () => {
-    console.log("session saved");
-  });
-
   whatsapp.on("message", (message) => {
     if (message.body === "!خدمات") {
       message.reply("قائمة الخدمات\n[0] الحصول على الواجب\n[1] جدول الحصص");
@@ -132,6 +131,7 @@ async function main() {
 }
 
 main();
+
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.send({
