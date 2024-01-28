@@ -5,14 +5,11 @@
   "type": "commonjs",
   "private": true,
   "scripts": {
-    "start": "node index.js",
-    "build": "npm install --production || npm prune --production"
+    "start": "node --trace-deprecation index.js",
+    "build": "npm install --production"
   },
   "dependencies": {
     "express": "^4.18.2",
     "whatsapp-web.js": "github:MobCode100/whatsapp-web.js"
-  },
-  "engines": {
-    "node": "18.16.0"
   }
 }

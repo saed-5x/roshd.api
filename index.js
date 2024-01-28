@@ -42,7 +42,7 @@ async function initialize() {
       const authStrategy = new LocalAuth({
           clientId: "adminSession"
         });
-
+        console.log("start auth");
       whatsapp = new Client({
       authStrategy,
       restartOnAuthFail: true,
@@ -60,7 +60,7 @@ async function initialize() {
       },
   });
   whatsapp.initialize();
-
+  console.log("end auth");
       // await mongoose
       //   .connect(uri, clientOptions)
       //   .then(() => {
@@ -166,9 +166,9 @@ app.get("/isReady", (req, res) => {
   }
 });
 
-app.get("/initialize", (req, res) => {
+app.get("/initialize", async (req, res) => {
   if (!isReady) {
-    initialize();
+   await initialize();
   } else {
     res.send(false);
   }
